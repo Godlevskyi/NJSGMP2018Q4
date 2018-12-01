@@ -1,0 +1,25 @@
+{
+  "name": "nodejs2018q4",
+  "version": "1.0.0",
+  "description": "NODEJS Global Mentoring Program 2018 Q4",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Igor Godlevskyi <igor_godlevskyi@epam.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-proposal-decorators": "^7.1.6",
+    "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
+    "@babel/plugin-proposal-function-sent": "^7.1.0",
+    "@babel/plugin-proposal-numeric-separator": "^7.0.0",
+    "@babel/plugin-proposal-throw-expressions": "^7.0.0",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/register": "^7.0.0",
+    "nodemon": "^1.18.7"
+  }
+}
