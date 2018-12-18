@@ -37,7 +37,7 @@ try {
 
 setTimeout(() => {
   dirWatcher.unWatch();
-  console.log('DirWatcher stopped listening'); // eslint-disable-line no-console
+  console.log('DirWatcher stopped listening');
 }, delayForUnWatch);
 
 
