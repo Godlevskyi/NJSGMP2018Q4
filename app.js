@@ -1,43 +1,15 @@
-import { User, Product } from './models';
-import path from 'path';
-import { CSV2JSON } from "./utils";
-import { DirWatcher, Importer } from './modules';
+import express from 'express';
+import parsedCookies from './middlewares/parsedCookies';
+import parsedQuery from './middlewares/parsedQuery';
+import { routers } from './routes';
+import bodyParser from 'body-parser';
 
-new User();
-new Product();
+const app = express();
 
-const dirWatcher = new DirWatcher();
-const importer = new Importer();
+app.use(parsedCookies);
+app.use(parsedQuery);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(routers());
 
-const directoryPath = path.resolve('data');
-const delayForWatching = 2000;
-const delayForUnWatch = 100000;
-
-try {
-  //async loading
-  dirWatcher.on('dirwatcher:changed', (filePath) => {
-    importer
-      .import(filePath)
-      .then( dataCSV => console.log(CSV2JSON(dataCSV)));
-  });
-  
-  //Example usage of sync loading. Commented out as not required to be used  
-  /*
-  dirWatcher.on('dirwatcher:changed', (filePath) => {
-    console.log(CSV2JSON(importer.importSync(filePath)));
-  });
-  */
-
-  dirWatcher.watch(directoryPath, delayForWatching);
-
-} catch (error) {
-    console.log('Conversion error', error);
-    throw error;
-}
-
-setTimeout(() => {
-  dirWatcher.unWatch();
-  console.log('DirWatcher stopped listening');
-}, delayForUnWatch);
-
-
+export default app;
