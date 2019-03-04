@@ -1,4 +1,4 @@
-export const products = [
+const products = [
   {
     id: 1,
     name: 'Supreme T-Shirt 1',
@@ -7,7 +7,12 @@ export const products = [
     options: [
       { color: 'blue' },
       { size: 'XL' }
-    ]
+    ],
+    reviews: [
+      "first review for product 1",
+      "second review for product 1",
+      "third review for product 1"
+    ],
   },
   {
     id: 2,
@@ -17,7 +22,12 @@ export const products = [
     options: [
       { color: 'red' },
       { size: 'XXL' }
-    ]
+    ],
+    reviews: [
+      "first review for product 2",
+      "second review for product 2",
+      "third review for product 2"
+    ],
   },
   {
     id: 3,
@@ -27,6 +37,12 @@ export const products = [
     options: [
       { color: 'green' },
       { size: 'XXXL' }
-    ]
+    ],
+    reviews: [
+      "first review for product 3",
+      "second review for product 3",
+      "third review for product 3"
+    ],
   },
 ];
+module.exports = products;
