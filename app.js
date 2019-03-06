@@ -5,10 +5,11 @@ import bodyParser from 'body-parser';
 const router = require('./router');
 const app = express();
 
-app.use(parsedCookies);
-app.use(parsedQuery);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/api', router);
+app.use(parsedCookies);
+app.use(parsedQuery);
+app.use('/api',router);
+
 
 export default app;

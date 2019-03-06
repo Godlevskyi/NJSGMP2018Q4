@@ -5,8 +5,8 @@ module.exports = {
     return Promise.resolve(products);
   },
   getById: (id) => {
-    const product = products.find(item => item.id === id);
-  
+    const product = products.find(item => item.id === JSON.parse(id));
+
     if (product) {
       return Promise.resolve(product);
     }
@@ -16,7 +16,7 @@ module.exports = {
   getAllReviews: (id) => {
     if (!id) Promise.reject('ERROR: No product id');
   
-    const product = products.find(item => item.id === id);
+    const product = products.find(item => item.id === JSON.parse(id));
     
     const reviews = (product && product.reviews) || [];
     if (product) {

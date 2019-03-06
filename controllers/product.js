@@ -2,21 +2,24 @@ const productModel = require('../models/product');
 
 module.exports = {
   getAllProducts: (req, res, next) => {
+
     productModel.getAll()
       .then((result) => {
+        console.log('result', result)
         res
           .status(200)
-          .send(result);
+          .json(result);
       })
       .catch(next);
   },
   getSingleProduct: (req, res, next) => {
+    console.log('req.params.id', req.params.id)
     productModel.getById(req.params.id)
       .then((result) => {
         res
           .status(200)
-          .send(result);
-      })
+          .json(result);
+      })      
       .catch(next);
   },
   addNewProduct: (req, res, next) => {
@@ -24,7 +27,7 @@ module.exports = {
       .then((result) => {
         res
           .status(200)
-          .send(result);
+          .json(result); 
       })
       .catch(next);
   },
@@ -33,7 +36,7 @@ module.exports = {
     .then((result) => {
       res
         .status(200)
-        .send(result);
+        .json(result);
     })
     .catch(next); 
   },
