@@ -1,5 +1,7 @@
-export default class User {
-  constructor() {
-    console.log('User module');
-  }
-}
+const users = require('../data/users');
+
+module.exports = {
+  getAll: () => {
+    return Promise.resolve(users);
+  },
+} 

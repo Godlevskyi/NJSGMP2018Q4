@@ -4,7 +4,7 @@
   "description": "NODEJS Global Mentoring Program 2018 Q4",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon --exec babel-node app.js",
+    "start": "nodemon --exec babel-node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Igor Godlevskyi <igor_godlevskyi@epam.com>",
@@ -23,7 +23,9 @@
     "nodemon": "^1.18.7"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "csvtojson": "^2.0.8",
+    "express": "^4.16.4",
     "request": "^2.88.0",
     "through2": "^3.0.0"
   }
