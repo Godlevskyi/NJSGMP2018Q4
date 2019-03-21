@@ -1,8 +1,8 @@
-const userModel = require('../models/user');
+const { Users } = require('../models/index');
 
 module.exports = {
   getAllUsers: (req, res, next) => {
-    userModel.getAll()
+    Users.findAll({attributes: ['id', 'login', 'password', 'email']})
       .then((result) => {
         res
           .status(200)

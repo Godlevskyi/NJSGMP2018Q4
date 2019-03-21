@@ -1,9 +1,9 @@
-const productModel = require('../models/product');
+const { Products } = require('../models/index');
 
 module.exports = {
   getAllProducts: (req, res, next) => {
 
-    productModel.getAll()
+    Products.findAll({attributes: ['id', 'name', 'brand', 'price']})
       .then((result) => {
         console.log('result', result)
         res
@@ -14,7 +14,12 @@ module.exports = {
   },
   getSingleProduct: (req, res, next) => {
     console.log('req.params.id', req.params.id)
-    productModel.getById(req.params.id)
+    Products.findAll({
+      attributes: ['id', 'name', 'brand', 'price'], 
+      where: {
+        id: req.params.id
+      }
+    })
       .then((result) => {
         res
           .status(200)
@@ -23,7 +28,7 @@ module.exports = {
       .catch(next);
   },
   addNewProduct: (req, res, next) => {
-    productModel.addNew(req.body)
+    Products.create(req.body)
       .then((result) => {
         res
           .status(200)
@@ -32,7 +37,12 @@ module.exports = {
       .catch(next);
   },
   getAllProductReviews: (req, res, next) => {
-    productModel.getAllReviews(req.params.id)
+    Products.findAll({
+      attributes: ['reviews'], 
+      where: {
+        id: req.params.id
+      }
+    })
     .then((result) => {
       res
         .status(200)

@@ -1,6 +1,18 @@
 {
   "name": "Node.js Homework Application",
-  "auth": {
-    "secret": "secret"
+  
+  "development": {
+    "username": "postgres",
+    "password": "123456",
+    "database": "node-db-postgres",
+    "host": "docker.for.mac.localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "123456",
+    "database": "node-db-postgres-test",
+    "host": "docker.for.mac.localhost",
+    "dialect": "postgres"
   }
 }
