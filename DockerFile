@@ -1,18 +1,15 @@
 FROM node:8-slim
 
-RUN mkdir /nodeApp
-ADD . /nodeApp
-WORKDIR /nodeApp
+RUN mkdir /node_app
+ADD . /node_app
+WORKDIR /node_app
 
 # Copy application to /nodeApp directory and install dependencies
-COPY package.json /nodeApp
+COPY package.json /node_app
 RUN npm install
-
-# What should be executed when the Docker image is launching
-CMD npm start
 
 # Binds to port 3001
 EXPOSE 3001
 
-# Creates a mount point
-VOLUME [ "/nodeApp" ]
+# What should be executed when the Docker image is launching
+CMD npm start

@@ -17,9 +17,6 @@ module.exports = {
       price: {
         type: Sequelize.STRING
       },
-      reviews: {
-        type: Sequelize.STRING
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

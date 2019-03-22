@@ -1,7 +1,7 @@
 import passport from 'passport';
 import TwitterStrategy from 'passport-twitter';
 import { find } from 'lodash';
-const userModel = require('../models/user');
+const { Users } = require('../models');
 
 const APP_ID = 'w4qvekl1age6jpPvcA5TKpCOd';
 const APP_SECRET = 'ohJb5xdfiITvSXmVf6U9BBDoy2RKMhFIV2khvAmN9NGX6YICIz';
@@ -14,7 +14,7 @@ export default function initTwitterStrategy() {
       callbackURL: 'http://localhost:8080/auth/twitter/callback',
     },
     (accessToken, refreshToken, profile, done) => {
-      userModel.getAll()
+      Users.findAll({attributes: ['id', 'login', 'password', 'email']})
       .then((users) => {
         const registeredUser = find(users, { name: profile.displayName });
         if (!registeredUser) {

@@ -3,7 +3,7 @@
 import passport from 'passport';
 import { OAuth2Strategy as GoogleStrategy } from 'passport-google-oauth';
 import { find } from 'lodash';
-const userModel = require('../models/user');
+const {Users} = require('../models');
 
 const APP_ID = '635767716898-sk7c64kno8jgom23n8dj3n3kejsejch1.apps.googleusercontent.com';
 const APP_SECRET = 'zJ2557skonaR5Rd0LBdLsJy8';
@@ -16,7 +16,7 @@ export default function initGoogleStrategy() {
       callbackURL: 'http://localhost:3001/auth/google/callback',
     },
     (accessToken, refreshToken, profile, done) => {
-      userModel.getAll()
+      Users.findAll({attributes: ['id', 'login', 'password', 'email']})
         .then((users) => {
           const registeredUser = find(users, { name: profile.displayName });
           if (!registeredUser) {

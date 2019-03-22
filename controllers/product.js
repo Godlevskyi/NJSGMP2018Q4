@@ -1,4 +1,7 @@
-const { Products } = require('../models/index');
+const { 
+  Products,
+  Reviews,
+} = require('../models/index');
 
 module.exports = {
   getAllProducts: (req, res, next) => {
@@ -37,10 +40,10 @@ module.exports = {
       .catch(next);
   },
   getAllProductReviews: (req, res, next) => {
-    Products.findAll({
-      attributes: ['reviews'], 
+    Reviews.findAll({
+      attributes: ['content'], 
       where: {
-        id: req.params.id
+        productId: req.params.id
       }
     })
     .then((result) => {
