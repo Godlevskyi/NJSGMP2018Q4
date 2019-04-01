@@ -1,23 +1,21 @@
 
-const users = [
+export const users = [
   {
     id: 1,
-    login: "a",
+    name: "a",
     password: "a",
     email: "a@a.com"
   },
   {
     id: 2,
-    login: "b",
+    name: "b",
     password: "b",
     email: "b@b.com"
   },
   {
     id: 3,
-    login: "c",
+    name: "c",
     password: "c",
     email: "c@c.com"
   },
 ];
-
-module.exports = users;

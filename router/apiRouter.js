@@ -1,17 +1,36 @@
 import express from 'express';
+import {
+  deleteProductById,
+  getAllProducts,
+  getSingleProduct,
+  addNewProduct,
+} from '../controllers/product';
+import {
+  getAllUsers,
+  deleteUserById,
+} from '../controllers/user';
+import {
+  deleteCityById,
+  updateCityById,
+  createNewCity,
+  getAllCities,
+} from '../controllers/city';
+import { initMongoDb } from './mongodb/connector';
+
 const apiRouter = express.Router();
+initMongoDb(); 
 
-const productController = require('../controllers/product');
-const userController = require('../controllers/user');
+apiRouter.get('/products', getAllProducts);
+apiRouter.get('/products/:id', getSingleProduct);
+apiRouter.delete('/products/:id', deleteProductById);
+apiRouter.post('/products', addNewProduct);
 
-apiRouter.get('/products', productController.getAllProducts);
+apiRouter.get('/users', getAllUsers);
+apiRouter.delete('/users/:id', deleteUserById);
 
-apiRouter.get('/products/:id', productController.getSingleProduct);
-
-apiRouter.get('/products/:id/reviews', productController.getAllProductReviews);
-
-apiRouter.post('/products', productController.addNewProduct);
-
-apiRouter.get('/users', userController.getAllUsers);
+apiRouter.get('/cities', getAllCities);
+apiRouter.post('/cities', createNewCity);
+apiRouter.put('/cities/:id', updateCityById);
+apiRouter.delete('/cities/:id', deleteCityById);
 
 export default apiRouter;

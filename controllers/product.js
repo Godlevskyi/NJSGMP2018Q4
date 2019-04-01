@@ -1,57 +1,45 @@
-const { 
-  Products,
-  Reviews,
-} = require('../models/index');
+import { productModel } from '../models/Products';
+import getLastModifiedDate from ('../mongodb/getLastModifiedDate');
 
-module.exports = {
-  getAllProducts: (req, res, next) => {
+export const deleteProductById = (req, res, next) => {
+  const id = Number(req.params.id);
+  productModel.deleteOne({ id: id }, (err, data) => {
+    if (err) next(err);
+    res.send('Product deleted: ' + data);
+  });
+};
 
-    Products.findAll({attributes: ['id', 'name', 'brand', 'price']})
-      .then((result) => {
-        console.log('result', result)
-        res
-          .status(200)
-          .json(result);
-      })
-      .catch(next);
-  },
-  getSingleProduct: (req, res, next) => {
-    console.log('req.params.id', req.params.id)
-    Products.findAll({
-      attributes: ['id', 'name', 'brand', 'price'], 
-      where: {
-        id: req.params.id
-      }
-    })
-      .then((result) => {
-        res
-          .status(200)
-          .json(result);
-      })      
-      .catch(next);
-  },
-  addNewProduct: (req, res, next) => {
-    Products.create(req.body)
-      .then((result) => {
-        res
-          .status(200)
-          .json(result); 
-      })
-      .catch(next);
-  },
-  getAllProductReviews: (req, res, next) => {
-    Reviews.findAll({
-      attributes: ['content'], 
-      where: {
-        productId: req.params.id
-      }
-    })
-    .then((result) => {
-      res
-        .status(200)
-        .json(result);
-    })
-    .catch(next); 
-  },
+export const getAllProducts = (req, res, next) => {
+  productModel.find({}, (err, data) => {
+    if (err) next(err);
+    res.send(data);
+  })
+};
+
+export const getSingleProduct = (req, res, next) => {
+  const id = Number(req.params.id);
+  productModel.find({}, (err, data) => {
+    if (err) next(err);
+    res.send(data[id]);
+  })
+};
+
+export const addNewProduct = (req, res, next) => {
+  const {
+    id,
+    name,
+    brand,
+    price,
+    color,
+    size,
+  } = req.body;
+  const modifiedData = getLastModifiedDate();
+  productModel.findOrCreate({ id, name, brand, price, color, size },
+    { ...modifiedData },
+    (err, data) => {
+      if (err) next(err);
+      res.send(data);
+    }
+  );
 };
 

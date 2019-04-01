@@ -1,15 +1,17 @@
-'use strict';
-module.exports = (sequelize, DataTypes) => {
-  const Product = sequelize.define('Product', {
-    name: DataTypes.STRING,
-    brand: DataTypes.STRING,
-    price: DataTypes.STRING,
-  }, {});
-  Product.associate = function(models) {
-    Product.hasMany(models.Review, {
-      foreignKey: 'productId',
-      as: 'reviews',
-    });
-  };
-  return Product;
-};
+import mongoose from 'mongoose';
+import findOrCreate from 'mongoose-find-or-create';
+
+const Shema = mongoose.Schema;
+
+const Product = new Shema({
+      id: {
+         type: Number,
+         unique: true,
+      },
+      name: String,
+      brand: String,
+      price: Number,
+});
+
+Product.plugin(findOrCreate);
+export const productModel = mongoose.model('Product', Product);
