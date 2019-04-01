@@ -1,10 +1,10 @@
 import { find } from 'lodash';
 import jwt from 'jsonwebtoken';
 
-const userModel = require('../models/user');
+const { Users } = require('../models');
 
 export const authenticate = (req, res, next) => {
-  userModel.getAll()
+  Users.findAll({attributes: ['id', 'login', 'password', 'email']})
     .then((users) => {
       const user = find(users, req.body);
 

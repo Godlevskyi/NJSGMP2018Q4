@@ -1,7 +1,7 @@
 import passport from 'passport';
 import FacebookStrategy from 'passport-facebook';
 import { find } from 'lodash';
-const userModel = require('../models/user');
+const { Users } = require('../models');
 
 const APP_ID = 1880175192111422;
 const APP_SECRET = 'b9ec9d60be814662a340b43aa2ac79d9';
@@ -14,7 +14,7 @@ export default function initFacebookStrategy() {
       callbackURL: 'http://localhost:3001/auth/facebook/callback',
     },
     (accessToken, refreshToken, profile, done) => {
-      userModel.getAll()
+      Users.findAll({attributes: ['id', 'login', 'password', 'email']})
         .then((users) => {
           const registeredUser = find(users, { name: profile.displayName });
           if (!registeredUser) {
