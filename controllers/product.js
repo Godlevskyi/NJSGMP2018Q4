@@ -1,5 +1,5 @@
-import { productModel } from '../models/Products';
-import getLastModifiedDate from ('../mongodb/getLastModifiedDate');
+import { productModel } from '../models/Product';
+import getLastModifiedDate from '../mongodb/getLastModifiedDate';
 
 export const deleteProductById = (req, res, next) => {
   const id = Number(req.params.id);

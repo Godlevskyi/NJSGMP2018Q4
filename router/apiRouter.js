@@ -15,7 +15,7 @@ import {
   createNewCity,
   getAllCities,
 } from '../controllers/city';
-import { initMongoDb } from './mongodb/connector';
+import { initMongoDb } from '../mongodb/connector';
 
 const apiRouter = express.Router();
 initMongoDb(); 

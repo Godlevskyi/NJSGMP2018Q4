@@ -1,6 +1,6 @@
 import { cities } from '../data/cities';
-import { users } from '../data/user';
-import { products } from '../data/product';
+import { users } from '../data/users';
+import { products } from '../data/products';
 import { cityModel } from '../models/City';
 import { userModel } from '../models/User';
 import { productModel } from '../models/Product';

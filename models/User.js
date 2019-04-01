@@ -10,7 +10,7 @@ const User = new Shema({
       },
       name: String,
       email: String,
-      password: Number,
+      password: String,
 });
 
 User.plugin(findOrCreate);

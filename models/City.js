@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import findOrCreate from 'mongoose-find-or-create';
 
-const Shema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 const City = new Schema({
   name: String,
@@ -17,4 +17,5 @@ const City = new Schema({
 });
 
 City.plugin(findOrCreate);
+
 export const cityModel = mongoose.model('City', City);
